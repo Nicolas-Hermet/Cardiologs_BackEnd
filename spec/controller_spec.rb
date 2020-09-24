@@ -11,6 +11,13 @@ RSpec.describe 'Delineation App' do
     # Sinatra::Application
     ApplicationController.new
   end
+
+  it 'says hello' do
+    get '/delineation/new'
+    expect(last_response).to be_ok
+    expect(last_response.body).to eq('Hello World')
+  end
+
   it 'redirects properly on root' do
     get '/'
     expect(last_response.status).to eq(302)
