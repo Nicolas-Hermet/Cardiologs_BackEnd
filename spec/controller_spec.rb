@@ -11,4 +11,9 @@ RSpec.describe 'Delineation App' do
     # Sinatra::Application
     ApplicationController.new
   end
+  it 'redirects properly on root' do
+    get '/'
+    expect(last_response.status).to eq(302)
+    expect(last_response.location).to include('/delineation/new')
+  end
 end
