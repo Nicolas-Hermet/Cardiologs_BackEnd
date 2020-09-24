@@ -23,4 +23,9 @@ RSpec.describe 'Delineation App' do
     expect(last_response.status).to eq(302)
     expect(last_response.location).to include('/delineation/new')
   end
+
+  it 'posts csv files' do
+    post '/delineation/new'
+    expect(last_response.status).to eq(200)
+  end
 end
