@@ -27,7 +27,22 @@ Cardiologs should be able to recover your work, understand it, trust it easily, 
 **Bonus question**: We want to efficiently host delineations online and be able to quickly request a range of it (e.g.,the record between 2 and 3 pm on the third day). How would you achieve that?
 
 
-## How to run this repo ?
+## How to...
+
+### ...run this repo ?
+
+1. Clone this repo
+2. `cd Cardiologs_BackEnd`
+3. `bundle install`
+4. `shotgun -p 4567` or just `shotgun`
+5. Open your favorite browser at `http://localhost:4567/`
+
+### ...play with the app ?
+
+You should have redirected to `http://localhost:4567/delineation/new`.
+In the page a `Choose file` button should be present. It'll allow you to choose a CSV file from your personnal data.
+You can use the file in the Challenge description part.
+Pressing `Upload` will execute the delineation on your data and display the results on the same page.
 
 ## Notes on my solutions
 

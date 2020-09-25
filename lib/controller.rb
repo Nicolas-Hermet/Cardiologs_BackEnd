@@ -9,6 +9,10 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/delineation/new' do
-    'Hello World'
+    erb :new_delineation
+  end
+
+  post '/delineation/new' do
+    # TODO: call future read_file module
   end
 end

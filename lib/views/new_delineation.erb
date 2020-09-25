@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add your Delineation</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+  
+    <h1>Delineation App</h1>
+    <p>Upload your CSV file to delineate</p>
+    <form action='/delineations/new/' enctype="multipart/form-data" method='POST'>
+      Upload your CSV file  <input type='file' name='ecg'/><br/>
+      <input type='submit' value='Upload'/>
+    </form>
+
+  </body>
+</html>
