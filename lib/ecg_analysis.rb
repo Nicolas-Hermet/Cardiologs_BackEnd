@@ -20,14 +20,22 @@ class ECGAnalysis
     @mean_rate = to_bpm(@mean_rate)
   end
 
+  private
+
+  # return true if a row is tagged 'premature'
   def premature?(row)
     row.last.downcase == 'premature'
   end
 
+  # return true if a row has the wave_type
   def wave_type?(row, wave_type)
     row.first.downcase == wave_type.downcase
   end
 
+  # loop on the csv data row by row and count :
+  #   - premature p waves
+  #   - premature qrs waves
+  #   - number of total qrs waves
   def parse_data(data)
     current_qrs_time = 0
     previous_qrs_time = 0
