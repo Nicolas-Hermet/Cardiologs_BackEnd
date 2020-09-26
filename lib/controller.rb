@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'sinatra'
+require 'read_csv'
+require 'ecg_analysis'
 
 # Delineation App
 class ApplicationController < Sinatra::Base
@@ -13,6 +15,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/delineations/new/' do
+    @ecg = ECGAnalysis.new ReadFile.extract_data params[:ecg][:tempfile] if params[:ecg]
     erb :new_delineation
   end
 end

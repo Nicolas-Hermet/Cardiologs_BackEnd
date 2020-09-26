@@ -14,5 +14,13 @@
       <input type='submit' value='Upload'/>
     </form>
 
+    <% if @ecg %>
+      <h2>Delineation results </h2> 
+      <ul>
+        <li>Number of premature P waves : <%= @ecg.premature_p_wave_number%></li>
+        <li>Number of premature QRS waves : <%= @ecg.premature_qrs_wave_number%></li>
+      </ul>
+    <% end %>
+
   </body>
 </html>
