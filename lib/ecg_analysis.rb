@@ -12,9 +12,9 @@ class ECGAnalysis
     @premature_p_wave_number = 0
     @premature_qrs_wave_number = 0
     @mean_rate = 0
-    @min_rate = []
-    @max_rate = []
-    parse @raw_data
+    @min_rate = [0, []]
+    @max_rate = [0, []]
+    parse_data @raw_data
   end
 
   def premature?(row)
@@ -25,12 +25,51 @@ class ECGAnalysis
     row.first.downcase == wave_type.downcase
   end
 
-  private
-
-  def parse(data)
+  def parse_data(data)
+    current_qrs_time = 0
+    previous_qrs_time = 0
+    rates_sum = 0
+    qrs_wave_qnty = 0
     data.each do |row|
-      @premature_p_wave_number += 1 if premature?(row) && wave_type?(row, 'P')
-      @premature_qrs_wave_number += 1 if premature?(row) && wave_type?(row, 'QRS')
+      count_p_qrs_premature_waves row
+      next unless wave_type?(row, 'QRS')
+
+      qrs_wave_qnty += 1
+      previous_qrs_time = current_qrs_time
+      current_qrs_time = row[1].to_i + (row[2].to_i - row[1].to_i) / 2 # time at wave peek
+      rates_sum += compute_rate(current_qrs_time, previous_qrs_time) if previous_qrs_time != 0
     end
+    @mean_rate = rates_sum / (qrs_wave_qnty - 1) # rates are computed between two waves. So n - 1 rates for n waves.
+  end
+
+  def count_p_qrs_premature_waves(row)
+    @premature_p_wave_number += 1 if premature?(row) && wave_type?(row, 'P')
+    @premature_qrs_wave_number += 1 if premature?(row) && wave_type?(row, 'QRS')
+  end
+
+  def compute_rate(current_time, previous_time)
+    time_at_rate = previous_time + (current_time - previous_time) / 2
+    # rate value at time_at_rate. i.e: between the last two peeks (current and previous)
+    instant_rate = 1 / (current_time - previous_time).to_f
+    max_rate? instant_rate, time_at_rate
+    min_rate? instant_rate, time_at_rate
+    instant_rate
+  end
+
+  def max_rate?(rate, time)
+    @max_rate[1] << time if rate == @max_rate[0]
+    return unless rate > @max_rate[0]
+
+    @max_rate[0] = rate
+    @max_rate[1] = [time]
+  end
+
+  def min_rate?(rate, time)
+    @min_rate[1] << time if rate == @min_rate[0]
+    return unless (rate < @min_rate[0]) || (@min_rate[0]).zero?
+
+    @min_rate[0] = rate
+    @min_rate[1] = [time]
+  end
   end
 end
