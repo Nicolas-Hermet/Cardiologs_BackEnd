@@ -5,14 +5,14 @@ require 'sinatra'
 # Delineation App
 class ApplicationController < Sinatra::Base
   get '/' do
-    redirect '/delineation/new'
+    redirect '/delineations/new/'
   end
 
-  get '/delineation/new' do
+  get '/delineations/new/' do
     erb :new_delineation
   end
 
-  post '/delineation/new' do
-    # TODO: call future read_file module
+  post '/delineations/new/' do
+    erb :new_delineation
   end
 end
