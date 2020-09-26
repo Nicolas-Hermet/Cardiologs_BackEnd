@@ -19,6 +19,9 @@
       <ul>
         <li>Number of premature P waves : <%= @ecg.premature_p_wave_number%></li>
         <li>Number of premature QRS waves : <%= @ecg.premature_qrs_wave_number%></li>
+        <li>Max rate : <%= @ecg.max_rate.first %> bpm at <% @ecg.max_rate.last.each do |time| %> <%= time %>; <%end%> </li>
+        <li>Min rate : <%= @ecg.min_rate.first %> bpm at <% @ecg.min_rate.last.each do |time| %> <%= time %>; <%end%> </li>
+        <li>Mean rate : <%= @ecg.mean_rate %> bpm</li>
       </ul>
     <% end %>
 
