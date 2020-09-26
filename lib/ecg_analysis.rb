@@ -15,6 +15,9 @@ class ECGAnalysis
     @min_rate = [0, []]
     @max_rate = [0, []]
     parse_data @raw_data
+    @max_rate[0] = to_bpm(@max_rate[0])
+    @min_rate[0] = to_bpm(@min_rate[0])
+    @mean_rate = to_bpm(@mean_rate)
   end
 
   def premature?(row)
@@ -71,5 +74,8 @@ class ECGAnalysis
     @min_rate[0] = rate
     @min_rate[1] = [time]
   end
+
+  def to_bpm rate
+    (rate * 1000 * 60).round(1)
   end
 end
