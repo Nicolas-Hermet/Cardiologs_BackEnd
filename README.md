@@ -26,6 +26,20 @@ Cardiologs should be able to recover your work, understand it, trust it easily, 
 
 **Bonus question**: We want to efficiently host delineations online and be able to quickly request a range of it (e.g.,the record between 2 and 3 pm on the third day). How would you achieve that?
 
+**Bonus Answer**: My guess is during the first parsing I would cut the file in two parts of 12 hours, then each of these parts in 2 as well, and so on, until obtaining 5 levels of granularity of files of different sizes.
+1 file of 24h (~5Mo)
+2 files of 12h (for a total of ~5Mo)
+4 files of 6h (for a total of ~5Mo)
+8 files of 3h (for a total of ~5Mo)
+24 files of 1h (for a total of ~5Mo)
+of course start and end time of each is stored in the file name.
+
+So this is a total of 25Mo to store instead of 5Mo. But this way, whatever timeframe the user is asking we can kinda binary search the best suiting file to parse.
+
+I would adjust the granularity depending on user's average behavior.
+
+But I'm wondering if it wouldn't be overkill if average records are about an initial 5Mo.
+
 
 ## How to...
 
