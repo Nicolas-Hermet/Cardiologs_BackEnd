@@ -16,6 +16,7 @@ class ApplicationController < Sinatra::Base
 
   post '/delineations/new/' do
     @ecg = ECGAnalysis.new ReadFile.extract_data params[:ecg][:tempfile] if params[:ecg]
+    @ecg.change_date_and_time_of_recording(params["recorded-at"]) if params["recorded-at"]
     erb :new_delineation
   end
 end
