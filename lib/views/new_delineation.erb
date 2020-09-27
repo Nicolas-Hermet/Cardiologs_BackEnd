@@ -23,7 +23,10 @@
       
       <div>
       <label for="recorded-at">Set the start date and time of the recording.:</label>
-      <input type="datetime-local" name="recorded-at" >
+      <input  type="datetime-local"
+              pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}"
+              placeholder="yyyy-mm-ddThh:mm"
+              name="recorded-at" >
       </div>
 
       <button type='submit'>Upload <img src="/images/arrow-right.svg" alt=""></button>
