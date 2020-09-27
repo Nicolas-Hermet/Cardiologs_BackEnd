@@ -20,15 +20,23 @@ class ECGAnalysis
     @mean_rate = to_bpm(@mean_rate)
   end
 
-
   def change_date_and_time_of_recording(date_and_time)
-    return unless date_and_time != ""
+    return unless date_and_time != ''
+
     chosen_time = DateTime.parse(date_and_time).to_time
-    @max_rate[1].map!{|t| Time.at(chosen_time + t.to_f/1000).strftime("%F-%k:%M:%S.%L")} if @max_rate[1].length
-    @min_rate[1].map!{|t| Time.at(chosen_time + t.to_f/1000).strftime("%F-%k:%M:%S.%L")} if @min_rate[1].length
+    change_min_rate_time(chosen_time)
+    change_max_rate_time(chosen_time)
   end
 
   private
+
+  def change_min_rate_time(chosen_time)
+    @min_rate[1].map! { |t| Time.at(chosen_time + t.to_f / 1000).strftime('%F-%k:%M:%S.%L') } if @min_rate[1].length
+  end
+
+  def change_max_rate_time(chosen_time)
+    @max_rate[1].map! { |t| Time.at(chosen_time + t.to_f / 1000).strftime('%F-%k:%M:%S.%L') } if @max_rate[1].length
+  end
 
   # return true if a row is tagged 'premature'
   def premature?(row)
@@ -91,7 +99,7 @@ class ECGAnalysis
     @min_rate[1] = [time]
   end
 
-  def to_bpm rate
+  def to_bpm(rate)
     (rate * 1000 * 60).round(1)
   end
 end
