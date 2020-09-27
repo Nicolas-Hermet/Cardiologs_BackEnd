@@ -11,15 +11,15 @@ describe 'Delineation page' do
     ApplicationController.new
   end
 
-  context '/delineation/new' do
+  context '/delineations/new/' do
     it 'responds and has correct content' do
-      get '/delineation/new'
+      get '/delineations/new/'
       expect(last_response).to be_ok
       expect(last_response.body).to include('<p>Upload your CSV file to delineate</p>')
     end
 
     it 'has an \'upload button' do
-      get '/delineation/new'
+      get '/delineations/new/'
       expect(last_response.body).to include('<input type=\'submit\' value=\'Upload\'/>')
     end
   end
@@ -27,11 +27,11 @@ describe 'Delineation page' do
   it 'redirects properly on root' do
     get '/'
     expect(last_response.status).to eq(302)
-    expect(last_response.location).to include('/delineation/new')
+    expect(last_response.location).to include('/delineations/new/')
   end
 
   it 'posts csv files' do
-    post '/delineation/new'
+    post '/delineations/new/'
     expect(last_response.status).to eq(200)
   end
 end
