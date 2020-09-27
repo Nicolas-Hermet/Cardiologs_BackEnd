@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="17px" viewBox="0 0 24 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>Arrow Right</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Homepage-2" transform="translate(-477.000000, -6840.000000)" stroke="#FFFFFF" stroke-width="2">
+            <g id="Press-release" transform="translate(0.000000, 6367.000000)">
+                <g id="Press-1" transform="translate(249.000000, 124.000000)">
+                    <g id="Button" transform="translate(23.000000, 318.000000)">
+                        <g id="Arrow-Right" transform="translate(206.000000, 32.000000)">
+                            <polyline id="Path-181-Copy-4" points="13.7604657 0.520931318 21 7.96281473 13.7604657 15"></polyline>
+                            <path d="M0.5,8 L20,8" id="Line" stroke-linecap="square" transform="translate(10.000000, 8.000000) rotate(-180.000000) translate(-10.000000, -8.000000) "></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

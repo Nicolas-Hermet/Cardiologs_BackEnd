@@ -4,30 +4,39 @@
     <title>Add your Delineation</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="<%= url("/stylesheets/main.css")%>">
   </head>
   <body>
   
     <h1>Delineation App</h1>
     <p>Upload your CSV file to delineate</p>
+
     <form action='/delineations/new/' enctype="multipart/form-data" method='POST'>
-        
-      <label for="ecg">Upload your CSV file</label>
-      <input type='file' name='ecg' required/><br/>
       
+      <div>
+        <label for="ecg" class="btn">
+          Choose ECG file <img src="/images/arrow-right.svg" alt="">
+        </label>
+        <input type='file' id="ecg" name='ecg' required>
+        <br/>
+      </div>
+      
+      <div>
       <label for="recorded-at">Set the start date and time of the recording.:</label>
       <input type="datetime-local" name="recorded-at" >
+      </div>
 
-      <input type='submit' value='Upload'/>
+      <button type='submit'>Upload <img src="/images/arrow-right.svg" alt=""></button>
     </form>
 
     <% if @ecg %>
       <h2>Delineation results </h2> 
       <ul>
-        <li>Number of premature P waves : <%= @ecg.premature_p_wave_number%></li>
-        <li>Number of premature QRS waves : <%= @ecg.premature_qrs_wave_number%></li>
-        <li>Max rate : <%= @ecg.max_rate.first %> bpm <br> <% @ecg.max_rate.last.each do |time| %> at: <%= time %>; <br> <%end%> </li>
-        <li>Min rate : <%= @ecg.min_rate.first %> bpm <br> <% @ecg.min_rate.last.each do |time| %> at: <%= time %>; <br> <%end%> </li>
-        <li>Mean rate : <%= @ecg.mean_rate %> bpm</li>
+        <li>Number of <span>premature P</span> waves : <div class="result"><%= @ecg.premature_p_wave_number%></div></li>
+        <li>Number of <span>premature QRS</span> waves : <div class="result"><%= @ecg.premature_qrs_wave_number%></div></li>
+        <li><span>Max</span> rate : <div class="result"><%= @ecg.max_rate.first %></div> bpm <br> <% @ecg.max_rate.last.each do |time| %> <div class="result">at: <%= time %></div>; <br> <%end%> </li>
+        <li><span>Min rate</span> : <div class="result"><%= @ecg.min_rate.first %></div> bpm <br> <% @ecg.min_rate.last.each do |time| %> <div class="result">at: <%= time %></div>; <br> <%end%> </li>
+        <li><span>Mean rate</span> : <div class="result"><%= @ecg.mean_rate %></div> bpm</li>
       </ul>
     <% end %>
 
