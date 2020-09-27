@@ -53,9 +53,10 @@ But I'm wondering if it wouldn't be overkill if average records are about an ini
 
 ### ...play with the app ?
 
-You should have redirected to `http://localhost:4567/delineation/new`.
+You should have been redirected to `http://localhost:4567/delineation/new`.
 In the page a `Choose file` button should be present. It'll allow you to choose a CSV file from your personnal data.
-You can use the file in the Challenge description part.
+You can use the file in the Challenge description part above.
+You can indicate what is the recording time of your CSV. Supported format is "yyyy-mm-ddThh:mm" only.
 Pressing `Upload` will execute the delineation on your data and display the results on the same page.
 
 ## Notes on my solutions
@@ -89,7 +90,7 @@ __/   |   \___
 ```
 
 
-So first I computed `current_qrs_time` which is = ts + (te-ts)/2
+So first, I computed `current_qrs_time` which is = ts + (te-ts)/2
 then `compute_rate` takes these new timestamps and compute rates between them as mentionned earlier.
 
 - mean rate is the average of all rates. I could have also count the total amount of QRS waves and divid this by the total amount of time of the file, but it didn't feel right at the time.
@@ -115,10 +116,15 @@ The result can then be really different.
 
 
 ### Known limitations and possible improvements: 
-- Reading of input_test.csv file should be centralized across the spec files
-- changing date and time is given with a possible 1ms of error.
-It appears that adding milliseconds to DateTime object is tough and can lead to imprecision on the last digit. I don't have any clue why yet.
-- Params are not sanitized hence leading to security breach I guess.
-- I didn't succeed to correctly test the controller.rb. I wanted to test that file can be uploaded correctly, and date correctly set by the user. I'll have to investigate further on this.
+- Reading of input_test.csv file should be centralized across the spec files.
+- changed time is given with a possible 1ms of error.
+It appears that adding milliseconds to `DateTime` object is tough and can lead to imprecision on the last digit. I don't have any clue why yet.
+- Params are not sanitized on post requests, hence they might lead to potential security breach as well as potential HTTP Error 500.
+- I didn't succeed to correctly test the controller.rb. I wanted to test if a file can be uploaded correctly, and if a recording date and time can correctly be set by the user. I'll have to investigate further on this.
 - Rubocop is not happy with my ECGAnalysis.parse_data method. And I agree with it. That was the only I found so far to parse the data only once without having a bunch of 'from-the-death-methods' that deal with too many input arguments. I think a refactoring with a helper module could be better.
 
+
+## Things I learned (or improved knowledge) throughout this challenge : 
+- Sinatra
+- Testing Sinatra with Rspec
+- Date and Time management for milliseconds, as well as strftime deeper possibilities.
