@@ -20,6 +20,14 @@ class ECGAnalysis
     @mean_rate = to_bpm(@mean_rate)
   end
 
+
+  def change_date_and_time_of_recording(date_and_time)
+    return unless date_and_time != ""
+    chosen_time = DateTime.parse(date_and_time).to_time
+    @max_rate[1].map!{|t| Time.at(chosen_time + t.to_f/1000).strftime("%F-%k:%M:%S.%L")} if @max_rate[1].length
+    @min_rate[1].map!{|t| Time.at(chosen_time + t.to_f/1000).strftime("%F-%k:%M:%S.%L")} if @min_rate[1].length
+  end
+
   private
 
   # return true if a row is tagged 'premature'
