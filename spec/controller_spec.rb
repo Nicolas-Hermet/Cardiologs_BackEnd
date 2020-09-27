@@ -20,7 +20,7 @@ describe 'Delineation page' do
 
     it 'has an \'upload button' do
       get '/delineations/new/'
-      expect(last_response.body).to include('<input type=\'submit\' value=\'Upload\'/>')
+      expect(last_response.body).to include('<button type=\'submit\'>Upload ')
     end
   end
 

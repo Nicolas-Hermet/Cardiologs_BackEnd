@@ -1,0 +1,106 @@
+* {
+    box-sizing: border-box;
+  }
+  
+body {
+    padding: 0;
+    margin: 0;
+    font-family: "Open Sans",sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #fff;
+    background-image: url(../images/grid-small.png);
+    background-position: center;
+    background-repeat: repeat;
+    text-align: center;
+    padding: 50px 0;
+    position: relative;
+}
+
+h1 {
+  font-size: clamp(40px, 5vw, 70px);
+  font-weight: bolder;
+}
+
+ul {
+  list-style-type: none;
+  text-align: start;
+}
+
+.result {
+  display: inline;
+  margin-left: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 50px;
+}
+
+form div {
+  margin: 10px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+button, .btn{
+  position: relative;
+  background-image: url(../images/gold-geo-bg.png);
+  line-height: 14px;
+  background-size: cover;
+  background-position: right;
+  background-repeat: no-repeat;
+  padding: 18px 80px 18px 25px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: left;
+  border-radius: 3px;
+  width: 300px;
+  margin: 0 auto 10px;
+  line-height: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+button:hover img {
+  position: absolute;
+  height: 16px;
+  width: 21px;
+  top: calc(50% - 8px);
+  right: 20px;
+  transform: translateX(-10px);
+  transition: transform 0.3s;
+}
+
+.btn:hover img {
+  position: absolute;
+  height: 16px;
+  width: 21px;
+  top: calc(50% - 8px);
+  right: 20px;
+  transform: translateX(-10px);
+  transition: transform 0.3s;
+}
+
+button[type=submit] {
+  background-image: url(../images/red-geo-bg.png);
+  margin-top: 20px;
+}
+
+p, h2, span {
+  color: #FFB401;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 2em;
+}
